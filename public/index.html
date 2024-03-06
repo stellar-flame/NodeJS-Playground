@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello World Client</title>
+</head>
+<body>
+<button id="helloButton">Say Hello</button>
+<p id="response"></p>
+
+<script>
+    document.getElementById("helloButton").addEventListener("click", function() {
+        fetch('/hello', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({message: "Hello"}),
+        })
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById("response").textContent = data.message;
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+    });
+</script>
+</body>
+</html>
