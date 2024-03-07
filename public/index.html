@@ -6,26 +6,11 @@
     <title>Hello World Client</title>
 </head>
 <body>
-<button id="helloButton">Say Hello</button>
-<p id="response"></p>
-
-<script>
-    document.getElementById("helloButton").addEventListener("click", function() {
-        fetch('/hello', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({message: "Hello"}),
-        })
-        .then(response => response.json())
-        .then(data => {
-            document.getElementById("response").textContent = data.message;
-        })
-        .catch((error) => {
-            console.error('Error:', error);
-        });
-    });
-</script>
+<h2>Enter Your Name</h2>
+<form action="/submit-name" method="post">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required>
+    <button type="submit">Submit</button>
+</form>
 </body>
 </html>
